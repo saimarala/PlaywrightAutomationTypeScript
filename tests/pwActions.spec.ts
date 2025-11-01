@@ -77,6 +77,39 @@ test.only("Checkbox actions",async({page})=>{
      await expect(checkbox).not.toBeChecked();
     }
 
+    5// Toggle checkboxes:If checked, uncheck; if unchecked, check. Assert state flipped.
+
+    for(const checkbox of checkboxes){
+
+      if(await checkbox.isChecked()){
+         //only if checked
+      await checkbox.uncheck();
+     await expect(checkbox).not.toBeChecked(); 
+      }else{
+         //only if not checked
+      await checkbox.check();
+     await expect(checkbox).toBeChecked();
+      }
+
+      7// randomely select check boxes - select checkboxes by index(1,3,6) and assert
+        const indexs:number[]=[1,3,6];
+        for(const i of indexs){
+          checkboxes[i].check();
+          await expect(checkboxes[i]).toBeChecked();
+        }
+      
+     
+    }
+await page.waitForTimeout(3000);
+    //7.select the check box based on the label
+      const weekname:string="Friday";
+      for(const label of days){
+        if(label.toLowerCase()===weekname.toLowerCase()){
+          const checkbox=page.getByLabel(label);
+          checkbox.check();
+          await expect(checkbox).toBeChecked();
+        }
+      }
 
      await page.waitForTimeout(3000);
     
