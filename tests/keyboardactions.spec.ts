@@ -34,7 +34,7 @@ await page.keyboard.press('C');
 await page.keyboard.up('Control');
 
 
-//5 Press TAB - 2 times
+//5 Press  TAB - 2 times
 await page.keyboard.press('Tab');
 await page.keyboard.press('Tab');
 
