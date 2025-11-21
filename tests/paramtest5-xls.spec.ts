@@ -8,7 +8,7 @@ Pre-requisite:  Install the xlsx Library
 
 import { test, expect } from '@playwright/test';
 import fs from 'fs';
-import * as XLSX from 'xlsx';
+import * as XLSX from "xlsx";
 
 //Loaded excel file
 //file--> workbook---sheets--rows & columns
