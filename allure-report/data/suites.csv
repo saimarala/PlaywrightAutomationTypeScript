@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","5408","search test","chromium","Fri Nov 21 19:46:58 IST 2025","passed","Fri Nov 21 19:47:03 IST 2025","","reporters.spec.ts","",""
+"","16537","logotest","chromium","Fri Nov 21 19:46:37 IST 2025","passed","Fri Nov 21 19:46:53 IST 2025","","reporters.spec.ts","",""
+"","4002","title test","chromium","Fri Nov 21 19:46:53 IST 2025","passed","Fri Nov 21 19:46:57 IST 2025","","reporters.spec.ts","",""
