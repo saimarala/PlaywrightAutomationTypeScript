@@ -13,6 +13,9 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+//  grep:/@sanity/ , //specify tag by sai
+//  grepInvert:/@regression/, //specify tag by sai
+ // grep:/(?=.*@sanity)(?=*@regression)/, //specify tag by sai
   // To change the timeout globally for all the tests (default is 30000 ms/30 secs) - sai
  // timeout: 6000,
 
@@ -27,15 +30,16 @@ export default defineConfig({
   /* Retry on CI only */
  // retries: process.env.CI ? 2 : 0,
   //Retry locally
-  retries:3,// done by sai
+ // retries:3,// done by sai
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  //workers: process.env.CI ? 1 : undefined,
+  workers: 1,// local by sai
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    screenshot:'only-on-failure',//capture by sai
-    video:'retain-on-failure',
+   // screenshot:'only-on-failure',//capture by sai
+   // video:'retain-on-failure',
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
    // viewport: { width: 1280, height: 720 },
@@ -52,6 +56,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+     // fullyParallel: true
     }/*,
 
     {
