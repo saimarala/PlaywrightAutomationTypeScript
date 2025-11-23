@@ -53,6 +53,7 @@ export default defineConfig({
    // video:'retain-on-failure',
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
+   // baseURL:"https://restful-booker.herokuapp.com",
    // viewport: { width: 1280, height: 720 },
     // ignoreHTTPSErrors: true,
     // headless: false,
