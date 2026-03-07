@@ -1,0 +1,3 @@
+Dialog type is :  prompt
+Dialog text: Please enter your name:
+Hello John! How are you today?

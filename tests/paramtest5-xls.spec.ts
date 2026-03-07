@@ -22,6 +22,9 @@ const worksheet=workbook.Sheets[sheetNames];
 
 const loginData:any=XLSX.utils.sheet_to_json(worksheet);
 console.log(loginData);
+loginData.forEach((row:any)=>{
+    console.log(`Username: ${row.email}, Password: ${row.password}, Validity: ${row.validity}`);
+});
 
 //main test
 test.describe('Login data driven test', async()=> {

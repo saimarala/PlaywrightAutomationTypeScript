@@ -42,11 +42,11 @@ test.only("Inner/child frames demo",async({page})=>{
       const radio=await childFrames[0].getByLabel("I am a human");
       await radio.check();
       await expect(radio).toBeChecked();
+      await page.mainFrame().locator("[name='mytext1']").fill("Hello from main frame");
       
     }else{
         console.log("frame3 is not available");     
     }
-
     await page.waitForTimeout(3000);
 }
 );

@@ -23,6 +23,7 @@ test("handle tabs", async () => {
 
     console.log("title of parent page", await pages[0].title());
     console.log("title of child page", await pages[1].title());
+   
 
     
     //Approach 2: alternate
