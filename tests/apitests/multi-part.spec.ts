@@ -51,6 +51,3 @@ test('Upload file attachment via API', async ({ request }) => {
   const body = await response.json();
   console.log('Upload successful:', body);
 });
-/*
-
-*/

@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/yourrepo/playwright-framework.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t playwright-tests .'
+            }
+        }
+
+        stage('Run Playwright Tests') {
+            steps {
+                sh 'docker run playwright-tests'
+            }
+        }
+
+        stage('Generate Report') {
+            steps {
+                sh 'npx playwright show-report'
+            }
+        }
+    }
+}
