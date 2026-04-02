@@ -19,9 +19,15 @@ test("Verify chrome CPU load in dynamic table", async ({ page }) => {
 
     for (const row of rows) {
 
-        const processName = await row.locator("td").nth(0).innerText();
+        const processName = await row.locator("td").nth(0).innerText(); 
 
         if (processName === "Chrome") {
+            // console.log("**********");
+            
+           console.log(await row.innerText());
+              console.log(await row.nth(0).innerText());
+            //       console.log("**********");
+            
             // cpuLoad= await row.locator('td:has-text("%")').innerText();//css
             cpuLoad = await row.locator("td", { hasText: '%' }).innerText();//playwright
             console.log("CPU Load of chrome:", cpuLoad);

@@ -10,9 +10,7 @@
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {
-      "actualWorkers": 1
-    },
+    "metadata": {},
     "preserveOutput": "always",
     "reporter": [
       [
@@ -53,7 +51,7 @@
     ],
     "reportSlowTests": {
       "max": 5,
-      "threshold": 300000
+      "threshold": 15000
     },
     "quiet": false,
     "projects": [
@@ -61,9 +59,7 @@
         "outputDir": "D:/AutomationLabs/PlaywrightAutomationTypeScript/test-results",
         "repeatEach": 1,
         "retries": 0,
-        "metadata": {
-          "actualWorkers": 1
-        },
+        "metadata": {},
         "id": "chromium",
         "name": "chromium",
         "testDir": "D:/AutomationLabs/PlaywrightAutomationTypeScript/tests",
@@ -76,88 +72,29 @@
     ],
     "shard": null,
     "updateSnapshots": "missing",
-    "updateSourceMethod": "patch",
-    "version": "1.56.1",
+    "version": "1.49.1",
     "workers": 1,
     "webServer": null
   },
-  "suites": [
+  "suites": [],
+  "errors": [
     {
-      "title": "frames.spec.ts",
-      "file": "frames.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [
-        {
-          "title": "Inner/child frames demo",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "chromium",
-              "projectName": "chromium",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "timedOut",
-                  "duration": 30849,
-                  "error": {
-                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                  },
-                  "errors": [
-                    {
-                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                    },
-                    {
-                      "location": {
-                        "file": "D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\tests\\frames.spec.ts",
-                        "column": 58,
-                        "line": 45
-                      },
-                      "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[name=\\'mytext1\\']')\u001b[22m\n\n\n\u001b[0m \u001b[90m 43 |\u001b[39m       \u001b[36mawait\u001b[39m radio\u001b[33m.\u001b[39mcheck()\u001b[33m;\u001b[39m\n \u001b[90m 44 |\u001b[39m       \u001b[36mawait\u001b[39m expect(radio)\u001b[33m.\u001b[39mtoBeChecked()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 45 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mmainFrame()\u001b[33m.\u001b[39mlocator(\u001b[32m\"[name='mytext1']\"\u001b[39m)\u001b[33m.\u001b[39mfill(\u001b[32m\"Hello from main frame\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 46 |\u001b[39m       \n \u001b[90m 47 |\u001b[39m     }\u001b[36melse\u001b[39m{\n \u001b[90m 48 |\u001b[39m         console\u001b[33m.\u001b[39mlog(\u001b[32m\"frame3 is not available\"\u001b[39m)\u001b[33m;\u001b[39m     \u001b[0m\n\u001b[2m    at D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\tests\\frames.spec.ts:45:58\u001b[22m"
-                    }
-                  ],
-                  "stdout": [
-                    {
-                      "text": "Child frames inside frame3 \u001b[33m1\u001b[39m\n"
-                    }
-                  ],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-02-26T16:40:07.560Z",
-                  "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "trace",
-                      "contentType": "application/zip",
-                      "path": "D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\test-results\\frames-Inner-child-frames-demo-chromium\\trace.zip"
-                    }
-                  ]
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "d63184237f32bf31d674-50b65b7b75e025f4411b",
-          "file": "frames.spec.ts",
-          "line": 32,
-          "column": 6
-        }
-      ]
+      "message": "Error: Cannot find module '@faker-js/faker'\nRequire stack:\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\tests\\apitests\\post_api_Request_03_creatBooking.spec.ts\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\transform\\transform.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\common\\esmLoaderHost.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\runner\\processHost.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\runner\\loaderHost.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\runner\\loadUtils.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\runner\\reporters.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\runner\\runner.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\program.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\cli.js",
+      "stack": "Error: Cannot find module '@faker-js/faker'\nRequire stack:\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\tests\\apitests\\post_api_Request_03_creatBooking.spec.ts\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\transform\\transform.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\common\\esmLoaderHost.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\runner\\processHost.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\runner\\loaderHost.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\runner\\loadUtils.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\runner\\reporters.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\runner\\runner.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\node_modules\\playwright\\lib\\program.js\n- D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\node_modules\\@playwright\\test\\cli.js\n    at Object.<anonymous> (D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\tests\\apitests\\post_api_Request_03_creatBooking.spec.ts:22:1)",
+      "location": {
+        "file": "D:\\AutomationLabs\\PlaywrightAutomationTypeScript\\tests\\apitests\\post_api_Request_03_creatBooking.spec.ts",
+        "column": 1,
+        "line": 22
+      },
+      "snippet": "\u001b[90m   at \u001b[39mapitests\\post_api_Request_03_creatBooking.spec.ts:22\n\n\u001b[0m \u001b[90m 20 |\u001b[39m\n \u001b[90m 21 |\u001b[39m \u001b[36mimport\u001b[39m { test\u001b[33m,\u001b[39m expect } \u001b[36mfrom\u001b[39m \u001b[32m\"@playwright/test\"\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 22 |\u001b[39m \u001b[36mimport\u001b[39m {faker} \u001b[36mfrom\u001b[39m \u001b[32m\"@faker-js/faker\"\u001b[39m\n \u001b[90m    |\u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 23 |\u001b[39m \u001b[36mimport\u001b[39m {\u001b[33mDateTime\u001b[39m} \u001b[36mfrom\u001b[39m \u001b[32m'luxon'\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 24 |\u001b[39m\n \u001b[90m 25 |\u001b[39m\u001b[0m"
     }
   ],
-  "errors": [],
   "stats": {
-    "startTime": "2026-02-26T16:40:05.318Z",
-    "duration": 36207.248999999996,
+    "startTime": "2026-04-01T14:50:32.301Z",
+    "duration": 4480.8150000000005,
     "expected": 0,
     "skipped": 0,
-    "unexpected": 1,
+    "unexpected": 0,
     "flaky": 0
   }
 }

@@ -1,0 +1,44 @@
+==============================
+Previous height: 0
+Current height: 4710
+==============================
+Previous height: 4710
+Current height: 4741
+==============================
+Previous height: 4741
+Current height: 8910
+==============================
+Previous height: 8910
+Current height: 8941
+==============================
+Previous height: 8941
+Current height: 11010
+==============================
+Previous height: 11010
+Current height: 11041
+==============================
+Previous height: 11041
+Current height: 13110
+==============================
+Previous height: 13110
+Current height: 13141
+==============================
+Previous height: 13141
+Current height: 15210
+==============================
+Previous height: 15210
+Current height: 15241
+==============================
+Previous height: 15241
+Current height: 17310
+==============================
+Previous height: 17310
+Current height: 17341
+==============================
+Previous height: 17341
+Current height: 17371
+==============================
+Previous height: 17371
+Current height: 17371
+*********  Reached end of page  ********
+Total Number of books: 160

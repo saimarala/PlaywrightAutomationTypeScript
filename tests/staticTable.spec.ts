@@ -34,10 +34,15 @@ test('Static table', async({page}) => {
     expect(colCount).toBe(4);
 
    //3.Read all the data from 2nd row (index 2 means 3rd row including header)
+
+
   const secondRowCells:Locator= rows.nth(2).locator("td");
   const secondRowText:string[]= await secondRowCells.allInnerTexts()
   console.log("2nd row data",secondRowText);//[ 'Learn Java', 'Mukesh', 'Java', '500' ]
   //await expect(secondRowText).toHaveText([ 'Learn Java', 'Mukesh', 'Java', '500' ]);
+
+  console.log();
+  
 
   console.log("print second row data");
 

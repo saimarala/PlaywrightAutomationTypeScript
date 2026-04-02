@@ -7,6 +7,7 @@ test('Read data from all the table pages', async ({ page }) => {
 
     while (hasmorepages) {
         const rows = await page.locator("#example tbody tr").all();
+        
         for (let row of rows) {
             console.log(await row.innerText());
 
@@ -50,6 +51,7 @@ test.only("Search for specific data in the table", async ({ page }) => {
 
     const searchBox = page.locator("#dt-search-0");
     await searchBox.fill("Zenaida Frank")
+    
 
     const rows = await page.locator("#example tbody tr").all();
     if (rows.length >= 1) {

@@ -1,0 +1,9 @@
+Total pages found: 3
+All Titles: [
+  'Automation Testing Practice',
+  'Selenium',
+  'Fast and reliable end-to-end testing for modern web apps | Playwright'
+]
+3
+Closed window with title: Automation Testing Practice
+Closed window with title: Selenium

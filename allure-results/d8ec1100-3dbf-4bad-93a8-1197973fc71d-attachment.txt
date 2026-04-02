@@ -1,0 +1,74 @@
+Books count in current view: 0
+==============================
+Previous height: 0
+Current height: 2611
+Books count in current view: 20
+==============================
+Previous height: 2611
+Current height: 2642
+Books count in current view: 20
+==============================
+Previous height: 2642
+Current height: 4711
+Books count in current view: 40
+==============================
+Previous height: 4711
+Current height: 4742
+Books count in current view: 40
+==============================
+Previous height: 4742
+Current height: 6811
+Books count in current view: 60
+==============================
+Previous height: 6811
+Current height: 6842
+Books count in current view: 60
+==============================
+Previous height: 6842
+Current height: 8911
+Books count in current view: 80
+==============================
+Previous height: 8911
+Current height: 8942
+Books count in current view: 80
+==============================
+Previous height: 8942
+Current height: 11011
+Books count in current view: 100
+==============================
+Previous height: 11011
+Current height: 11042
+Books count in current view: 100
+==============================
+Previous height: 11042
+Current height: 13111
+Books count in current view: 120
+==============================
+Previous height: 13111
+Current height: 13142
+Books count in current view: 120
+==============================
+Previous height: 13142
+Current height: 15211
+Books count in current view: 140
+==============================
+Previous height: 15211
+Current height: 15242
+Books count in current view: 140
+==============================
+Previous height: 15242
+Current height: 17311
+Books count in current view: 160
+==============================
+Previous height: 17311
+Current height: 17342
+Books count in current view: 160
+==============================
+Previous height: 17342
+Current height: 17372
+Books count in current view: 160
+==============================
+Previous height: 17372
+Current height: 17372
+*********  Reached end of page  ********
+Total Number of books: 160

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import fs from 'fs';
 
-test('Download Text file and verify it exists', async ({ page}) => {
+test.only('Download Text file and verify it exists', async ({ page}) => {
   // Navigate to the download page
   await page.goto('https://testautomationpractice.blogspot.com/p/download-files_25.html');
 
@@ -23,7 +23,7 @@ test('Download Text file and verify it exists', async ({ page}) => {
   const fileExists = fs.existsSync(downloadPath); //checks if the file exists.
   expect(fileExists).toBeTruthy();
 
-  // Clean up downloaded files
+  //Clean up downloaded files
   if (fileExists) {
     fs.unlinkSync(downloadPath);
   }

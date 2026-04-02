@@ -1,0 +1,66 @@
+Books count in current view: 0
+==============================
+Previous height: 0
+Current height: 2610
+Books count in current view: 20
+==============================
+Previous height: 2610
+Current height: 2641
+Books count in current view: 20
+==============================
+Previous height: 2641
+Current height: 4710
+Books count in current view: 40
+==============================
+Previous height: 4710
+Current height: 4741
+Books count in current view: 40
+==============================
+Previous height: 4741
+Current height: 6810
+Books count in current view: 60
+==============================
+Previous height: 6810
+Current height: 6841
+Books count in current view: 60
+==============================
+Previous height: 6841
+Current height: 8910
+Books count in current view: 80
+==============================
+Previous height: 8910
+Current height: 8941
+Books count in current view: 80
+==============================
+Previous height: 8941
+Current height: 11010
+Books count in current view: 100
+==============================
+Previous height: 11010
+Current height: 11041
+Books count in current view: 100
+==============================
+Previous height: 11041
+Current height: 13110
+Books count in current view: 120
+==============================
+Previous height: 13110
+Current height: 13141
+Books count in current view: 120
+==============================
+Previous height: 13141
+Current height: 15210
+Books count in current view: 140
+==============================
+Previous height: 15210
+Current height: 15241
+Books count in current view: 140
+==============================
+Previous height: 15241
+Current height: 16890
+Books count in current view: 155
+==============================
+Previous height: 16890
+Current height: 16890
+*********  Reached end of page  ********
+Total Number of books: 155

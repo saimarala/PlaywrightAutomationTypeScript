@@ -23,7 +23,12 @@ test("hidden bootsrap",async({page})=>{
     console.log(await options.nth(i).textContent());
     
   }
-  
+
+  // for(const val of await options.allTextContents()){
+  //   console.log(val);
+  //   val === "Automation tester" && await options.filter({hasText:val}).click(); 
+
+  // }
     for (let i = 0; i < count; i++) {
   const text= await options.nth(i).innerText();
   if (text==="Automation tester") {

@@ -1,0 +1,5 @@
+Number of pages created : 2
+title of parent page Automation Testing Practice
+title of child page SDET-QA Blog
+title of parent page Automation Testing Practice
+title of child page SDET-QA Blog

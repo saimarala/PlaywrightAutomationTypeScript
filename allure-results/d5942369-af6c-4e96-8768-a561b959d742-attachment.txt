@@ -1,0 +1,7 @@
+number of rows in a table : 4
+**********
+Chrome
+**********
+CPU Load of chrome: 0.1%
+yellow box text :  Chrome CPU: 0.1%
+CPU load of chrome is equal

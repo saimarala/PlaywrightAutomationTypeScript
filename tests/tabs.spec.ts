@@ -26,7 +26,7 @@ test("handle tabs", async () => {
    
 
     
-    //Approach 2: alternate
+    //Approach 2: alternate 
     console.log("title of parent page", await parentPage.title());
     console.log("title of child page", await childPage.title());
 })

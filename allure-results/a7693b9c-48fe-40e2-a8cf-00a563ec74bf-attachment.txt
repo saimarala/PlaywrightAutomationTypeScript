@@ -1,0 +1,3 @@
+Books count in current view: 0
+Books count in current view: 20
+Total Number of books: 0

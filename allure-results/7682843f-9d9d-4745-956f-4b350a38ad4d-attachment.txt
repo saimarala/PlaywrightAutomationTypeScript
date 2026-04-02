@@ -1,0 +1,4 @@
+number of rows in a table : 4
+CPU Load of chrome: 4.4%
+yellow box text :  Chrome CPU: 4.4%PMP certification mock
+CPU load of chrome is equal

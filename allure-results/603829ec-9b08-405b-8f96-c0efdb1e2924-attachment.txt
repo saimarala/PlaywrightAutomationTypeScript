@@ -1,0 +1,7 @@
+number of rows in a table : 4
+**********
+Chrome	61.7 MB	0.2 MB/s	4.3 Mbps	3.5%
+**********
+CPU Load of chrome: 3.5%
+yellow box text :  Chrome CPU: 3.5%Automation practice website
+CPU load of chrome is equal

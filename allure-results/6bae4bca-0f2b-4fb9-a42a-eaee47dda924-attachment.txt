@@ -1,0 +1,7 @@
+number of rows in a table : 4
+**********
+Chrome	0.7 MB/s	1.9%	8.4 Mbps	2.5 MB
+**********
+CPU Load of chrome: 1.9%
+yellow box text :  Chrome CPU: 1.9%API testing services
+CPU load of chrome is equal

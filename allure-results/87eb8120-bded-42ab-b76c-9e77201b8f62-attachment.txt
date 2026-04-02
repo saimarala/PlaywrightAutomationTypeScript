@@ -1,0 +1,46 @@
+Number of rows in a table 7
+Number of columns in a table 4
+2nd row data [ 'Learn Java', 'Mukesh', 'Java', '500' ]
+
+print second row data
+Learn Java
+Mukesh
+Java
+500
+printing all the table data....
+Learn Selenium	Amit	Selenium	300
+print book names  where author is mukesh
+Mukesh 	 Learn Java
+Mukesh 	 Master In Selenium
+sai [ 'Learn Java', 'Master In Selenium' ]
+total price 7100
+Learn Java	Mukesh	Java	500
+print book names  where author is mukesh
+Mukesh 	 Learn Java
+Mukesh 	 Master In Selenium
+sai [ 'Learn Java', 'Master In Selenium' ]
+total price 7100
+Learn JS	Animesh	Javascript	300
+print book names  where author is mukesh
+Mukesh 	 Learn Java
+Mukesh 	 Master In Selenium
+sai [ 'Learn Java', 'Master In Selenium' ]
+total price 7100
+Master In Selenium	Mukesh	Selenium	3000
+print book names  where author is mukesh
+Mukesh 	 Learn Java
+Mukesh 	 Master In Selenium
+sai [ 'Learn Java', 'Master In Selenium' ]
+total price 7100
+Master In Java	Amod	JAVA	2000
+print book names  where author is mukesh
+Mukesh 	 Learn Java
+Mukesh 	 Master In Selenium
+sai [ 'Learn Java', 'Master In Selenium' ]
+total price 7100
+Master In JS	Amit	Javascript	1000
+print book names  where author is mukesh
+Mukesh 	 Learn Java
+Mukesh 	 Master In Selenium
+sai [ 'Learn Java', 'Master In Selenium' ]
+total price 7100

@@ -1,20 +1,11 @@
-import * as XLSX from 'xlsx';
-import path from 'path';
+console.log("A");
 
-export type LoginData = {
-    username: string;
-    password: string;
-    expected: string;
-    run: string;
-}
+// Wrap in an arrow function so it's a callback, not an immediate execution
+setTimeout(() => console.log("B"), 0);
 
-export function readExcel(filePath: string, sheetName: string): LoginData[]{
+// Use a callback function inside .then() and fix the syntax
+Promise.resolve().then(() => {
+    console.log("C");
+});
 
-    const fullPath = path.resolve(filePath);
-    console.log('Full Path is ', fullPath);
-
-    const workbook = XLSX.readFile(fullPath);
-    const sheet = workbook.Sheets[sheetName];
-    const data = XLSX.utils.sheet_to_json(sheet);   
-    return data;
-}
+console.log("D");
