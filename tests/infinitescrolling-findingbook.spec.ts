@@ -14,7 +14,7 @@ test("infinite scrolling fin the book", async ({ page }) => {
         const titles=await page.locator("#productsDiv h3").allInnerTexts();
         if(titles.includes("Five-minute Bedtime Stories")){
             console.log("Book Found");
-            bookFound=true;
+            bookFound=true; 
             expect(bookFound).toBeTruthy();
             break;
         }

@@ -48,5 +48,14 @@ test.only("Inner/child frames demo",async({page})=>{
         console.log("frame3 is not available");     
     }
     await page.waitForTimeout(3000);
+
+
+    await expect(
+  page.frameLocator('#frame1').frameLocator('#frame2').locator('#nestedBtn')
+).toBeVisible();
+  const frames = page.frames();
+for (const f of frames) {
+  console.log('Frame URL:', f.url());
+}
 }
 );

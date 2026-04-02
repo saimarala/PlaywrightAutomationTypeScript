@@ -1,4 +1,4 @@
-import {test  } from "@playwright/test"
+import {test,expect  } from "@playwright/test"
 
 
 
@@ -27,49 +27,43 @@ console.log(await pages[1].title());
 });
 
 
-test.only('Multiple Tabs - 3', async({browser}) => {
+test.only('Multiple Tabs - 3', async ({ browser }) => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto("https://testautomationpractice.blogspot.com/");
 
-    const context = await browser.newContext();//create context
- const page = await context.newPage();
-await page.goto("https://testautomationpractice.blogspot.com/");
-
-// 1. Wait for the new pages specifically
-const [newPage1, newPage2] = await Promise.all([
-    context.waitForEvent('page'), // Capture 1st popup
-    context.waitForEvent('page'), // Capture 2nd popup
+  // 1. Trigger the popup and capture all new pages
+  const [popup1, popup2] = await Promise.all([
+    context.waitForEvent('page'),
+    context.waitForEvent('page'),
     page.getByRole('button', { name: 'Popup Windows' }).click(),
-]);
+  ]);
 
-// 2. Wait for the new pages to actually finish loading their content
-await Promise.all([
-    newPage1.waitForLoadState('load'),
-    newPage2.waitForLoadState('load')
-]);
+  // 2. Ensure both popups are fully loaded
+  await Promise.all([
+    popup1.waitForLoadState('domcontentloaded'),
+    popup2.waitForLoadState('domcontentloaded'),
+  ]);
 
-// 3. Get all pages (Parent + 2 Popups)
-const allPages = context.pages();
-console.log("Total pages found:", allPages.length);
+  // 3. Collect all pages (parent + popups)
+  const allPages = context.pages();
+  console.log("Total pages found:", allPages.length);
 
-// 4. Fetch all titles
-const titles = await Promise.all(
-    allPages.map(p => p.title())
-);
+  // 4. Fetch titles in one go
+  const titles = await Promise.all(allPages.map(p => p.title()));
+  console.log("All Titles:", titles);
 
-console.log("All Titles:", titles);
-
-console.log(allPages.length);
-
-
-for (const p of allPages) {
+  // 5. Close unwanted pages
+  for (const p of allPages) {
     const title = await p.title();
-    
-    // Check if the title matches your target (e.g., "Google")
-    if (!title.includes(" Playwright")) {
-        await p.close();
-        console.log(`Closed window with title: ${title}`);
+    if (!title.includes("Playwright")) {
+      await p.close();
+      console.log(`Closed window with title: ${title}`);
     }
-}
+  }
 
+  // Optional: Assert that only the desired page remains
+  expect(context.pages().length).toBe(1);
 });
 
 
@@ -101,4 +95,48 @@ test('Multiple Tabs - 3 another way ', async({browser}) => {
     console.log("title of child page", await childPage.title());
  
 
+});
+
+
+test('Handle dynamic multiple tabs', async ({ browser }) => {
+  const context = await browser.newContext();
+  const parentPage = await context.newPage();
+  await parentPage.goto("https://testautomationpractice.blogspot.com/");
+
+  // 1. Listen for new pages dynamically
+  const newPages: any[] = [];
+  
+//   context.on('page', async page => {
+//     await page.waitForLoadState('domcontentloaded');
+//     newPages.push(page);
+//     console.log(`New page opened: ${await page.title()}`);
+//   });
+
+parentPage.on('popup', async popup => {
+    await popup.waitForLoadState('domcontentloaded');
+    newPages.push(popup);
+    console.log(`Popup opened: ${await popup.title()}`);
+  });
+  // 2. Trigger action that opens multiple tabs
+  await parentPage.getByRole('button', { name: 'Popup Windows' }).click();
+
+  // 3. Wait a bit to ensure all popups are captured
+  await parentPage.waitForTimeout(3000);
+
+  // 4. Collect all pages (parent + children)
+  const allPages = context.pages();
+  console.log("Total pages found:", allPages.length);
+
+  // 5. Fetch titles
+  const titles = await Promise.all(allPages.map(p => p.title()));
+  console.log("All Titles:", titles);
+
+  // 6. Close unwanted pages dynamically
+  for (const p of allPages) {
+    const title = await p.title();
+    if (!title.includes("Playwright")) {
+      await p.close();
+      console.log(`Closed window with title: ${title}`);
+    }
+  }
 });
