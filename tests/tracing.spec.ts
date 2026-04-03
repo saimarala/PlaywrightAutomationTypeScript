@@ -22,6 +22,7 @@ To view trace file ( 3 ways)
 
 
 import { test, expect} from '@playwright/test';
+import path from 'path';
 
 test.only('tracing test', async ({page,context}) => {
 
@@ -36,6 +37,6 @@ test.only('tracing test', async ({page,context}) => {
    await expect(page.getByRole('link', { name: 'Log out' })).toBeVisible();
   await expect(page.locator('#nameofuser')).toContainText('Welcome pavanol');
 
-  context.tracing.stop({path:'trace.zip'});
+  context.tracing.stop({path:path.join(__dirname, 'trace.zip')});
     
 });

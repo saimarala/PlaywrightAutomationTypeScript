@@ -139,3 +139,52 @@ test('Extract transactions by type and compare with Excel', async ({ page }) => 
   // Step 4: Assert both match
   expect(excelData).toEqual(webData);
 });
+
+
+
+//********************* */
+
+
+test('Bank statement debit rows comparison', async ({ page }) => {
+  await page.goto('https://example.com/bank-statement');
+
+  // --- Extract all rows at once ---
+  const allRows = await page.locator('table tr').all();
+  const webDebitData = await Promise.all(
+    allRows.map(async row => {
+      const cells = await row.locator('td').allInnerTexts();
+      if (cells[2]?.trim() === 'Debit') {
+        return { type: cells[2].trim(), amount: cells[3].trim() };
+      }
+      return null;
+    })
+  ).then(results => results.filter(Boolean) as { type: string; amount: string }[]);
+
+  console.log('Web Debit Data:', webDebitData);
+
+  // --- Download Excel ---
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    page.click('#downloadExcelBtn'),
+  ]);
+  const excelPath = await download.path();
+  if (!excelPath) throw new Error('Download failed');
+
+  // --- Read Excel ---
+  const workbook = XLSX.readFile(excelPath);
+  const sheet = workbook.Sheets[workbook.SheetNames[0]];
+  const excelData: any[] = XLSX.utils.sheet_to_json(sheet);
+
+  // --- Filter debit rows ---
+  const excelDebitData = excelData
+    .filter(row => String(row.Type).trim() === 'Debit')
+    .map(row => ({
+      type: String(row.Type).trim(),
+      amount: String(row.Amount).trim(),
+    }));
+
+  console.log('Excel Debit Data:', excelDebitData);
+
+  // --- Compare ---
+  expect(webDebitData).toEqual(excelDebitData);
+});
