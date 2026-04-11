@@ -63,3 +63,97 @@ test("Create Post request using static body", async({ request }) => {
 
 
 })
+
+
+
+
+// ✅ Type for strong validation
+interface BookingDates {
+  checkin: string;
+  checkout: string;
+}
+
+interface Booking {
+  firstname: string;
+  lastname: string;
+  totalprice: number;
+  depositpaid: boolean;
+  bookingdates: BookingDates;
+  additionalneeds: string;
+}
+
+test("Create Booking API - Enhanced Validation", async ({ request }) => {
+
+  // 🔹 Request body
+  const requestBody: Booking = {
+    firstname: "Jim",
+    lastname: "Brown",
+    totalprice: 1000,
+    depositpaid: true,
+    bookingdates: {
+      checkin: "2025-07-01",
+      checkout: "2025-07-05",
+    },
+    additionalneeds: "super bowls",
+  };
+
+  // 🔹 Send request
+  const response = await request.post("/booking", {
+    data: requestBody,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+
+  // 🔹 Basic validations
+  expect(response.ok()).toBeTruthy();
+  expect(response.status()).toBe(200);
+
+  // 🔹 Response time validation (performance)
+ // expect(response.request().timing()?.responseEnd).toBeLessThan(2000);
+
+  // 🔹 Headers validation
+  expect(response.headers()["content-type"]).toContain("application/json");
+
+  // 🔹 Extract response
+  const responseBody = await response.json();
+
+  console.log("Response:", responseBody);
+
+  // 🔹 Structure validation
+  expect(responseBody).toMatchObject({
+    bookingid: expect.any(Number),
+    booking: expect.any(Object)
+  });
+
+  // 🔹 Deep property validation
+  expect(responseBody.booking).toHaveProperty("firstname");
+  expect(responseBody.booking).toHaveProperty("bookingdates.checkin");
+
+  const booking = responseBody.booking as Booking;
+
+  // 🔹 Exact match validation
+  //expect(booking).toMatchObject(requestBody);
+
+  // 🔹 Type validations
+  expect(typeof booking.firstname).toBe("string");
+  expect(typeof booking.totalprice).toBe("number");
+  expect(typeof booking.depositpaid).toBe("boolean");
+
+  // 🔹 Date format validation (Regex)
+  const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+  expect(booking.bookingdates.checkin).toMatch(dateRegex);
+  expect(booking.bookingdates.checkout).toMatch(dateRegex);
+
+  // 🔹 Logical validation (checkin < checkout)
+  const checkinDate = new Date(booking.bookingdates.checkin);
+  const checkoutDate = new Date(booking.bookingdates.checkout);
+
+  expect(checkoutDate.getTime()).toBeGreaterThan(checkinDate.getTime());
+
+  // 🔹 Data consistency validation
+  expect(booking.firstname).toBe(requestBody.firstname);
+  expect(booking.lastname).toBe(requestBody.lastname);
+
+});

@@ -6,6 +6,7 @@ import * as XLSX from 'xlsx';
 async function getDebitRowsFromUI(page: Page): Promise<string[][]> {
     const rows = page.locator('table tbody tr');
     const data: string[][] = [];
+        
 
     for (let i = 0; i < await rows.count(); i++) {
         const row = rows.nth(i);
@@ -97,4 +98,5 @@ test('Validate Debit Rows UI vs Excel', async ({ page }) => {
     // Step 4: Compare
     compareData(uiDebitData, excelData);
 });
+
 

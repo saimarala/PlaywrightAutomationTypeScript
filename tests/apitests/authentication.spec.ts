@@ -97,3 +97,61 @@ test('API Key Auth - Header', async ({ request }) => {
   console.log(data);
 });
 
+
+
+
+
+test('Basic Auth → Get Token → Use Bearer Token', async () => {
+
+  // 🔹 Create API context
+  const apiContext = await request.newContext({
+    baseURL: 'https://api.example.com',
+  });
+
+  // 🔹 Step 1: Get token using Basic Auth
+  const username = 'admin';
+  const password = 'password123';
+
+  const basicAuth = Buffer.from(`${username}:${password}`).toString('base64');
+
+  const authResponse = await apiContext.post('/auth', {
+    headers: {
+      'Authorization': `Basic ${basicAuth}`,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  // ✅ Validate auth response
+  expect(authResponse.ok()).toBeTruthy();
+  expect(authResponse.status()).toBe(200);
+
+  const authBody = await authResponse.json();
+
+  console.log('Auth Response:', authBody);
+
+  // 🔹 Extract token
+  const token = authBody.token;
+
+  expect(token).toBeTruthy();
+
+  // 🔹 Step 2: Use Bearer Token for GET request
+  const getResponse = await apiContext.get('/users', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+
+  // ✅ Validate GET response
+  expect(getResponse.ok()).toBeTruthy();
+  expect(getResponse.status()).toBe(200);
+
+  const data = await getResponse.json();
+
+  console.log('Users Data:', data);
+
+  // 🔹 Validate response data
+  expect(Array.isArray(data)).toBeTruthy();
+  expect(data.length).toBeGreaterThan(0);
+
+});
+

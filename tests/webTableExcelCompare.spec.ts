@@ -18,6 +18,7 @@ async function getTableData(page: Page): Promise<string[][]> {
         }
 
         data.push(row);
+        
     }
 
     return data;

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.only('flaky test', async ({ page }) => {
+test.only('flaky test', async ({ page,request }) => {
 
     await page.goto('https://www.demoblaze.com/index.html');
     await page.getByRole('link', { name: 'Log in' }).click();
@@ -11,5 +11,6 @@ test.only('flaky test', async ({ page }) => {
     await expect(page.getByRole('link', { name: 'Log out' })).toBeVisible();
     await expect(page.locator('#nameofuser')).toContainText('Welcome pavanol');
     page.waitForLoadState('networkidle');
+    
 
 });
