@@ -1,4 +1,6 @@
-import { test, expect } from '@playwright/test';
+import {test,expect  } from "@playwright/test"
+
+
 
 test('check for broken links', async ({ page }) => {
   // Navigate to the page you want to test
@@ -22,8 +24,11 @@ test('check for broken links', async ({ page }) => {
     } else {
       console.log(`Valid link: ${link} (status ${status})`);
     }
+  
 
     // Optional: add assertion to fail test if broken link is found
-    expect.soft(status, `Broken link: ${link}`).toBeLessThan(400);
+    await expect.soft(status, `Broken link: ${link}`).toBeLessThan(400);
+  
   }
+  
 });

@@ -122,7 +122,6 @@ parentPage.on('popup', async popup => {
 
   // 3. Wait a bit to ensure all popups are captured
   await parentPage.waitForTimeout(3000);
-
   // 4. Collect all pages (parent + children)
   const allPages = context.pages();
   console.log("Total pages found:", allPages.length);

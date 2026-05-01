@@ -1,4 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
+import path from 'path';
+import dotenv from 'dotenv';
 
 /**
  * Read environment variables from file.
@@ -7,6 +9,14 @@ import { defineConfig, devices } from '@playwright/test';
 // import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
+
+//const envPath = path.resolve(__dirname, 'env', `.env.${process.env.ENV || 'prod'}`);
+const envPath = path.resolve(__dirname,  `env/.env.${process.env.ENV || 'prod'}`);
+//const envPath = path.join(__dirname, 'env', `.env.${process.env.ENV || 'prod'}`);
+dotenv.config({ 
+  path: envPath,
+ // override: true // This forces the variables to load even if already "partially" set
+});
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -54,6 +64,7 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
    // baseURL:"https://restful-booker.herokuapp.com",
+   //baseURL:  process.env.BASE_URL,
    // viewport: { width: 1280, height: 720 },
     // ignoreHTTPSErrors: true,
     // headless: false,
