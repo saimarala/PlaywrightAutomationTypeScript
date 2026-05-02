@@ -139,3 +139,63 @@ parentPage.on('popup', async popup => {
     }
   }
 });
+
+test('Handle dynamic multiple tabs another eai', async ({ browser }) => {
+  const context = await browser.newContext();
+  const parentPage = await context.newPage();
+  await parentPage.goto("https://testautomationpractice.blogspot.com/");
+
+  // 1. Listen for new pages dynamically
+  const newPages: any[] = [];
+  
+//   context.on('page', async page => {
+//     await page.waitForLoadState('domcontentloaded');
+//     newPages.push(page);
+//     console.log(`New page opened: ${await page.title()}`);
+//   });
+
+parentPage.on('popup', async popup => {
+    await popup.waitForLoadState('domcontentloaded');
+    newPages.push(popup);
+    console.log(`Popup opened: ${await popup.title()}`);
+  });
+  // 2. Trigger action that opens multiple tabs
+  await parentPage.getByRole('button', { name: 'Popup Windows' }).click();
+
+  // 3. Wait a bit to ensure all popups are captured
+  await parentPage.waitForTimeout(3000);
+  // 4. Collect all pages (parent + children)
+  const allPages = context.pages();
+  console.log("Total pages found:", allPages.length);
+
+  // 5. Fetch titles
+  const titles = await Promise.all(allPages.map(p => p.title()));
+  console.log("All Titles:", titles);
+let newpage;
+  // 6. Close unwanted pages dynamically
+  for (const p of allPages) {
+    const title = await p.title();
+    if (!title.includes("Playwright")) {
+      // await p.close();
+      // console.log(`Closed window with title: ${title}`);
+    }else{
+      newpage = p;
+    }
+  }
+
+  // 7. Verify only the desired page remains
+  // const remainingPages = context.pages();
+  // expect(remainingPages.length).toBe(1);
+  // const remainingTitle = await remainingPages[0].title();
+  // expect(remainingTitle).toContain("Playwright");
+
+  await newpage?.getByRole('link', { name: 'Get started' }).click({force:true});
+
+  expect(await newpage?.url()).toContain("https://playwright.dev/docs/intro");
+await parentPage.bringToFront();
+  await parentPage.getByRole('textbox', { name: 'Enter Name' }).fill("Test User");
+  await newpage?.bringToFront();
+  
+
+  await parentPage.waitForTimeout(2000);
+});
