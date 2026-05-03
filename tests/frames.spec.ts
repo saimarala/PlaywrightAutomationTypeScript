@@ -59,3 +59,57 @@ for (const f of frames) {
 }
 }
 );
+
+
+test("Interact with frames", async ({ page }) => {
+
+    await page.goto("https://letcode.in/frame");
+    const allframes = page.frames();
+    console.log("No.of frames: " + allframes.length);
+    for (const f of allframes) {
+  console.log('Frame URL:', f.url());
+  
+}
+
+    const frame = page.frameLocator("#firstFr")
+    await frame.locator("input[name='fname']").fill("Koushik");
+    await frame.locator("input[name='lname']").fill("Chatterjee");
+
+    const innerFrame = frame.frameLocator("app-frame-content iframe")
+    await innerFrame.locator("input[name='email']").fill("koushik@gmail.com")
+
+    await frame.locator("input[name='fname']").fill("letcode");
+
+    //await page.locator('iframe[name="firstFr"]').contentFrame().locator('app-frame-content iframe').contentFrame().getByRole('textbox', { name: 'Enter email' }).fill("koushik@gmail.com");
+    //contentFrame()   Converts that standard element Locator into a FrameLocator.
+    //Converts an existing standard element locator pointing to an iframe into a FrameLocator to look inside the iframe.
+
+    //frame.owner()
+    // /Converts an existing standard element locator pointing to an iframe into a FrameLocator to look inside the iframe.
+   expect(frame.owner()).toHaveAttribute('id', 'firstFr');
+//*************** */
+// both are same 
+     await page.mainFrame().getByRole('link', { name: 'Work-Space' }).click();// root page
+     await page.getByRole('link', { name: 'Work-Space' }).click();//
+     //************** */
+
+
+
+
+    // const myFrame = page.frame("firstFr")
+    // // if (myFrame != null) {
+    // //     await myFrame.fill("", "")
+    // // }
+    // await myFrame?.fill("input[name='fname']", "koushik")
+    // await myFrame?.fill("input[name='lname']", "chatterjee")
+
+    // expect(await myFrame?.locator("p.has-text-info").textContent()).toContain("You have entered")
+
+
+    await page.waitForTimeout(3000);
+
+
+
+
+
+})

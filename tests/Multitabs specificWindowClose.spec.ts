@@ -261,3 +261,54 @@ await parentPage.bringToFront();
 
   await parentPage.waitForTimeout(2000);
 });
+
+
+test('Handle dynamic multiple tabsdymamic wait another', async ({ browser }) => {
+  const context = await browser.newContext();
+  const parentPage = await context.newPage();
+  await parentPage.goto("https://testautomationpractice.blogspot.com/");
+
+
+  const [multipleWindow] = await Promise.all([
+    context.waitForEvent('page'),
+    parentPage.getByRole('button', { name: 'Popup Windows' }).click()
+  ]);
+
+  //multipleWindow.waitForLoadState('domcontentloaded');
+
+const targetPages = context.pages().filter(p => p !== parentPage);
+
+await Promise.all(
+  targetPages.map(p => p.waitForLoadState('domcontentloaded'))
+);
+//******************* */
+  const allPages = context.pages();
+  console.log("Total pages found:", allPages.length);
+
+  // 5. Fetch titles
+  const titles = await Promise.all(allPages.map(p => p.title()));
+  console.log("All Titles:", titles);
+let newpage;
+  // 6. Close unwanted pages dynamically
+  for (const p of allPages) {
+    const title = await p.title();
+    if (!title.includes("Playwright")) {
+      // await p.close();
+      // console.log(`Closed window with title: ${title}`);
+    }else{
+      newpage = p;
+    }
+  }
+
+
+  await newpage?.getByRole('link', { name: 'Get started' }).click({force:true});
+
+  expect(await newpage?.url()).toContain("https://playwright.dev/docs/intro");
+await parentPage.bringToFront();
+  await parentPage.getByRole('textbox', { name: 'Enter Name' }).fill("Test User");
+  await newpage?.bringToFront();
+  
+
+  await parentPage.waitForTimeout(2000);
+
+});
