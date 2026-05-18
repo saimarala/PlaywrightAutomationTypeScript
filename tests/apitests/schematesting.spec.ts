@@ -10,7 +10,7 @@ validate(data) checks if the response matches the schema.
 */
 
 import { test, expect } from '@playwright/test';
-import Ajv from 'ajv';
+import Ajv from 'ajv'; 
 
 //1) 
 test('Validate JSON response with schema1', async ({ request }) => {

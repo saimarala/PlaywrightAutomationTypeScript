@@ -11,7 +11,7 @@ test("Auot suggest dopdown",async({page})=>{
     const count= await options.count();
     console.log("Number of suggested options",count);
 
-    //prin the all the suggested options
+    //prin the all the suggested options 
     console.log(await options.allTextContents());
 
     for (let i = 0; i < count; i++) {

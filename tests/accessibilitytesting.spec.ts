@@ -41,6 +41,7 @@ await page.goto('https://www.w3.org/');
 //const accessibilityScanResults=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
 
 //3) Scanning for fe WCAG violations with rules
+//const accessibilityScanResults1=await new AxeBuilder({page}).withRules(['duplicate-id']).analyze();// run only specific rule
 const accessibilityScanResults=await new AxeBuilder({page}).disableRules(['duplicate-id']).analyze();
 
 
@@ -51,6 +52,14 @@ await testInfo.attach('accessibility results',{
 
 console.log("Number of violations:====>",accessibilityScanResults.violations.length);
 expect(accessibilityScanResults.violations.length).toEqual(0);
+//1) Scanning detect all types of WCAG violations.
+//const accessibilityScanResults=await new AxeBuilder({page}).analyze();
+
+//withTags([...]) → Filters scan to WCAG compliance levels.
+
+// withRules([...]) → Runs only the specified rule(s).
+
+// disableRules([...]) → Runs all rules except the ones you exclude.
 
 
 

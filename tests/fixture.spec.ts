@@ -18,7 +18,6 @@ export const test = base.extend<myFixture>({
          console.log("After executing test for login data");
     },
     testData:{
-
         name:"John",
         age:30,
         city:"New York"

@@ -4,10 +4,10 @@ import { log } from "node:console";
 test("comparing methods", async({page})=>{
     await page.goto("https://demowebshop.tricentis.com/")
 
-    const products:Locator= page.locator(".product-title");
+    const products:Locator= page.locator(".product-title");;
     //1.innerText() vs textContent()
-    //  console.log(await products.nth(1).innerText());//14.1-inch Laptop
-    //  console.log(await products.nth(1).textContent());//            14.1-inch Laptop
+     console.log(await products.nth(1).innerText());//14.1-inch Laptop
+     console.log(await products.nth(1).textContent());//            14.1-inch Laptop
 
      const count=await products.count();
 
@@ -28,16 +28,16 @@ test("comparing methods", async({page})=>{
     //2. allInnerText() vs allTextContnets()
     console.log("***allInnerText() vs allTextContnets()**");
     
-//    const productNames:string[] =await products.allInnerTexts();
-//    console.log(productNames);
+   const productNames:string[] =await products.allInnerTexts();
+   console.log(`sai innerText ${productNames[0]}`);
 
 
-   const productNames:string[] =await products.allTextContents();
-//    console.log(productNames);
-//    console.log(productNames.map(t=>t.trim()));
+   const productNames1:string[] =await products.allTextContents();
+   console.log(productNames1);
+   console.log(productNames1.map(t=>t.trim()));
 
-   const productNamesTrim:string[]= productNames.map(t=>t.trim());
-   console.log(productNamesTrim);
+   const productNamesTrim:string[]= productNames1.map(t=>t.trim());
+   console.log(`sai allTextContents ${productNamesTrim[0]}`);
    
    //3.all() converts locator--->Locator[]
    // Returns array of locators

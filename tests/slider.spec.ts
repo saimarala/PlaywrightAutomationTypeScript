@@ -32,6 +32,9 @@ await lastSlider.focus();
   // Use 'steps' to break the drag into a smooth motion (essential for sliders)
   await page.mouse.move(bb.x + 40,bb.y + bb.height / 2);
   await page.mouse.up();
+
+
+
     await page.waitForTimeout(3000);
 
 })

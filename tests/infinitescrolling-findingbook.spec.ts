@@ -19,6 +19,7 @@ test("infinite scrolling fin the book", async ({ page }) => {
             break;
         }
        //scroll down page
+        //await page.locator("#productsDiv h3").last().scrollIntoViewIfNeeded();
         await page.evaluate(()=>{
             window.scrollTo(0,document.body.scrollHeight);
         })

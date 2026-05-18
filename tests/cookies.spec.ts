@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect,Cookie } from '@playwright/test';
 
 test('Handle Cookies Demo', async ({ browser }) => {
 
@@ -21,7 +21,7 @@ test('Handle Cookies Demo', async ({ browser }) => {
 
 
   // 2) Retrieve the cookie by name
-  const allCookiesAfterAdd = await context.cookies();
+  const allCookiesAfterAdd : Cookie[] = await context.cookies();
   const retrievedCookie = allCookiesAfterAdd.find( (c) => c.name === 'MyCookie');
 
   console.log('Retrieved cookie details:', retrievedCookie);
@@ -29,7 +29,7 @@ test('Handle Cookies Demo', async ({ browser }) => {
   expect(retrievedCookie?.value).toBe('123456');
 
   // 3) Retrieve all cookies
-  let allCookies = await context.cookies();
+  let allCookies= await context.cookies();
   console.log('Total number of cookies created:', allCookies.length);
   expect(allCookies.length).toBeGreaterThan(0);
 

@@ -29,8 +29,12 @@ test("Verify chrome CPU load in dynamic table", async ({ page }) => {
             //       console.log("**********");
             
             // cpuLoad= await row.locator('td:has-text("%")').innerText();//css
-            cpuLoad = await row.locator("td", { hasText: '%' }).innerText();//playwright
-            console.log("CPU Load of chrome:", cpuLoad);
+         //   cpuLoad = await row.locator('td', { hasText: '%' }).innerText();//playwright
+
+            await row.locator("td").filter({ hasText: '%' }).innerText().then((text) => {
+                cpuLoad = text;
+            });
+            console.log("CPU Load of chrome: ", cpuLoad);
             break;
 
         }

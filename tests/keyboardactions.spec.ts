@@ -22,6 +22,8 @@ await input1.focus(); //await input1.click();
 
 //2) provide the text input1
 await page.keyboard.insertText("welcome");
+await page.keyboard.type("welcome");
+await page.keyboard.type("welcome", {delay:100});//type with delay between each character
 
 //3) Ctrl + A - select the text from input1
 await page.keyboard.down('Control');
@@ -71,6 +73,7 @@ await input1.focus(); //await input1.click();
 
 //2) provide the text input1
 await page.keyboard.insertText("welcome");
+await page.keyboard.type("welcome");
 
 //3) Ctrl + A - select the text from input1
 await page.keyboard.press('Control+A');

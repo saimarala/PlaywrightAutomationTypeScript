@@ -13,8 +13,12 @@ test('Playwright assertions demo', async ({ page }) => {
 
 
     //soft assertions
-    expect.soft(page).toHaveTitle("Demo Web Shop2");//failed
-    expect.soft(page).toHaveURL("https://demowebshop.tricentis.com/");
+    expect.soft(page).toHaveTitle(/.*Shop/);//failed
+    expect.soft(page).toHaveURL(/.*tricentis.com.*/);
+    //another way
+      expect.soft(page).toHaveTitle(/Shop/);//failed
+    expect.soft(page).toHaveURL(/tricentis.com/);
+
     const logo=await page.locator("img[alt='Tricentis Demo Web Shop']");
     expect.soft(logo).toBeVisible();
 

@@ -31,6 +31,10 @@ test("Double click",async({page})=>{
 
     await page.goto("https://testautomationpractice.blogspot.com/")
     const copybtn=await page.locator("button[ondblclick='myFunction1()']");
+        await page.getByRole('heading', { name: 'Automation Testing Practice' }).selectText()// select the text in the heading
+    await page.waitForTimeout(2000)
+     await page.getByRole('textbox', { name: 'Enter Name' }).highlight()// highlights the element
+     await page.locator('td:nth-child(4) > input').first().click({clickCount:3})// triple click to select the text in the field
 
     await copybtn.dblclick()// performs the dbl click action
 
