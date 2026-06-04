@@ -10,8 +10,8 @@ test('Autowaiting and forcing', async ({ page }) => {
     await expect(page).toHaveURL("https://demowebshop.tricentis.com/",{timeout:10000});
     await expect(page.locator("text=Welcome to our store")).toBeVisible({timeout:10000});
     //actions - autowait works
-    await page.locator("#small-searchterms").fill("Laptop", { force: true });//search bocx - force action
-    await page.locator("input[type='submit']").click({ force: true });
+    await page.locator("#small-searchterms").fill("Laptop", { force: true,timeout:10000 });//search bocx - force action
+    await page.locator("input[type='submit']").click({ force: true,timeout:10000 });
 
 
 });

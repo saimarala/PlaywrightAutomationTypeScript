@@ -1,35 +1,57 @@
-import {test as base } from "@playwright/test";
+import { test as base, expect, type Locator, request, type Page } from "@playwright/test";
 
-type myFixture={
-  fixture:any
-  loginData:any
-  testData:any
-  login:any
-}
-export const test = base.extend<myFixture>({
-    fixture: async ({ }, use) => {
+// Define strict types for your fixtures instead of using 'any'
+type MyFixture = {
+  fixture: string;
+  loginData: Record<string, string>;
+  testData: { name: string; age: number; city: string };
+  login: void;
+  loginfunctionality: Page;
+};
+
+export const test = base.extend<MyFixture>({
+    // Correctly typed fixture returning a string
+    fixture: async ({}, use) => {
         console.log("Before executing test");
         await use("This is my fixture value");
         console.log("After executing test");
     },
-    loginData: async ({ }, use) => {
-     console.log("Before executing test login data");
-        await use({admin:"admin",password:"admin123"})
-         console.log("After executing test for login data");
+
+    // Correctly typed fixture returning an object
+    loginData: async ({}, use) => {
+        console.log("Before executing test login data");
+        await use({ admin: "admin", password: "admin123" });
+        console.log("After executing test for login data");
     },
-    testData:{
-        name:"John",
-        age:30,
-        city:"New York"
+
+    // FIX: Wrapped in an async function so Playwright can register it as a fixture
+    testData: async ({}, use) => {
+        await use({
+            name: "John",
+            age: 30,
+            city: "New York"
+        });
     },
-    login:async({page},use)=>{
+
+    // Correctly typed page-dependent fixture
+    login: async ({ page }, use) => {
         console.log("Before executing test login");
-       await page.goto("https://testautomationpractice.blogspot.com/");
-         await use();
-         //  await use( await page.goto("https://testautomationpractice.blogspot.com/"));
-         console.log("After executing test for login");
+        await page.goto("https://testautomationpractice.blogspot.com/");
+        await use();
+        console.log("After executing test for login");
+    },
 
+    // Correctly typed login flow returning the page instance
+    loginfunctionality: async ({ page }, use) => {
+        await page.goto('https://example.com/login'); 
+        await page.locator('.username').fill('test@te.com');
+        await page.locator('.password').fill('qqe');
+        await page.locator('button[type="submit"]').click();
+        
+        // Pass the modified page back to the test
+        await use(page);
     }
+});
 
-    });
-export {expect,Locator, request} from "@playwright/test";
+// Re-export Playwright utilities
+export { expect, Locator, request };

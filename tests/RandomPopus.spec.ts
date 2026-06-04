@@ -11,7 +11,7 @@ test('random popups', async ({ page }) => {
   await page.getByRole('button', { name: 'Enter Name' }).click();
   let flag = false;
   //await page.waitForTimeout(1000);
-  page.addLocatorHandler(page.getByText('Friendly reminder', { exact: true }),async()=>{
+  await page.addLocatorHandler(page.getByText('Friendly reminder', { exact: true }),async()=>{
     flag = true;
   // await page.locator('#cdk-overlay-12').getByRole('button', { name: 'OK' }).click();
    

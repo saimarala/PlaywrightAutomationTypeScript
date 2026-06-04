@@ -5,14 +5,14 @@
              provide a way to operate multiple independent browser sessions.
 //page --> New Tab, Window, Popup             
 */
-import { test, expect, Locator, chromium } from "@playwright/test";
+import { test, expect, Locator, chromium, Browser,BrowserContext,Page } from "@playwright/test";
 
 test("Browser context demo", async () => {
-    const browser = await chromium.launch();//create browser
-    const context = await browser.newContext();//create context
+    const browser:Browser = await chromium.launch();//create browser
+    const context:BrowserContext = await browser.newContext();//create context
     //create 2 pages
-    const page1 = await context.newPage();
-    const page2 = await context.newPage();
+    const page1 : Page = await context.newPage();
+    const page2 : Page = await context.newPage();
 
     console.log("No of pages created : ",context.pages.length);//2
     

@@ -11,7 +11,7 @@ test('check for broken links', async ({ page }) => {
     anchors.map(a => a.href).filter(href => href.length > 0)
   );
 
-  console.log(`Found ${links.length} links`);
+  console.log(`Found ${links.length} links`); 
 
   // Loop through each link and check status
   for (const link of links) {

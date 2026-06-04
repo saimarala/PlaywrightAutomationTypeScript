@@ -280,7 +280,7 @@ const targetPages = context.pages().filter(p => p !== parentPage);
 
 await Promise.all(
   targetPages.map(p => p.waitForLoadState('domcontentloaded'))
-);
+);        
 //******************* */
   const allPages = context.pages();
   console.log("Total pages found:", allPages.length);

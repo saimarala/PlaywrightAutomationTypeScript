@@ -131,3 +131,63 @@ console.log(testData.name);
      await page.waitForTimeout(3000);
     
 });
+
+
+// This renames 'loginfunctionality' to 'page' just for this specific test
+test('Clean look using aliasing', async ({ loginfunctionality: page }) => {
+    await expect(page).toHaveURL('https://example.com');
+    await page.locator('#search-input').fill('Playwright Automation');
+    await page.click('button.submit-search');
+});
+
+
+test.describe('Testing Custom Playwright Fixtures', () => {
+
+  // Test 1: Using primitive and object data fixtures
+  test('Should read data from string and object fixtures', async ({ fixture, testData }) => {
+    // Accessing 'fixture' (string)
+    console.log(fixture); // Outputs: "This is my fixture value"
+    expect(fixture).toBe('This is my fixture value');
+
+    // Accessing 'testData' (object)
+    console.log(`User ${testData.name} is from ${testData.city}`);
+    expect(testData.age).toBe(30);
+  });
+
+  // Test 2: Using the navigation fixture (login)
+  test('Should use pre-navigated page fixture', async ({ login, page }) => {
+    // 'login' fixture already navigated to the blogspot URL.
+    // We use the default 'page' object to interact with it.
+    await expect(page).toHaveURL('https://testautomationpractice.blogspot.com/');
+    
+    // You can now interact with the page normally
+    await page.locator('#name').fill('Automation User');
+  });
+
+  // Test 3: Using the fully authenticated page fixture (loginfunctionality)
+  test('Should use fully authenticated page instance', async ({ loginfunctionality }) => {
+    // 'loginfunctionality' contains the page object *after* completing login steps.
+    // Notice we use 'loginfunctionality' instead of 'page' here.
+    
+    await expect(loginfunctionality).toHaveURL('https://example.com'); 
+    await expect(loginfunctionality.locator('.welcome-message')).toBeVisible();
+  });
+
+});
+
+
+
+
+
+
+test('Should use dynamic JSON data and auto-logout afterward', async ({ loginfunctionality: page, testData }) => {
+    // This uses "Sarah Jenkins" automatically loaded from data.json
+    await page.locator('#profile-name').fill(testData.name);
+    await page.locator('#profile-age').fill(testData.age.toString());
+    await page.locator('#profile-city').fill(testData.city);
+    await page.locator('button#save-profile').click();
+    
+    await expect(page.locator('.success-alert')).toBeVisible();
+    // Once this line executes, Playwright returns to the fixture to perform the logout steps.
+});
+

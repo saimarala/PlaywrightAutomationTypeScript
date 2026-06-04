@@ -14,7 +14,7 @@ import {parse} from 'csv-parse/sync';
 const csvPath='testdata/data.csv';
 const fileContent=fs.readFileSync(csvPath,'utf-8');
 
-const records=parse(fileContent,
+const records: any[] = parse(fileContent,
                         {
                             columns:true, 
                             skip_empty_lines:true

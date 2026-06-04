@@ -13,6 +13,7 @@ test("Auot suggest dopdown",async({page})=>{
 
     //prin the all the suggested options 
     console.log(await options.allTextContents());
+    options.allInnerTexts
 
     for (let i = 0; i < count; i++) {
         console.log(await options.nth(i).innerText);
