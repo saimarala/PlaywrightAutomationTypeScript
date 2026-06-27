@@ -2,33 +2,31 @@ import {test,expect  } from "@playwright/test"
 
 
 
-test('check for broken links', async ({ page }) => {
+test('check for broken links', async ({ page ,request}) => {
   // Navigate to the page you want to test
   await page.goto('https://testautomationpractice.blogspot.com/');
 
-  // Collect all hrefs from anchor tags
-  const links = await page.$$eval('a', anchors =>
-    anchors.map(a => a.href).filter(href => href.length > 0)
-  );
+const anchors = await page.locator('a').all();
 
-  console.log(`Found ${links.length} links`); 
-
-  // Loop through each link and check status
-  for (const link of links) {
-    const response = await page.request.get(link);
+for (const anchor of anchors) {
+  const href = await anchor.getAttribute('href');
+  if (href && href.length > 0) {
+     const response = await request.get(href);
     const status = response.status();
 
     // Log broken links
     if (status >= 400) {
-      console.error(`Broken link: ${link} (status ${status})`);
+      console.error(`Broken link: ${href} (status ${status})`);
     } else {
-      console.log(`Valid link: ${link} (status ${status})`);
+      console.log(`Valid link: ${href} (status ${status})`);
     }
   
 
     // Optional: add assertion to fail test if broken link is found
-    await expect.soft(status, `Broken link: ${link}`).toBeLessThan(400);
-  
+    await expect.soft(status, `Broken link: ${href}`).toBeLessThan(400);
   }
-  
+}
+
+
+
 });
