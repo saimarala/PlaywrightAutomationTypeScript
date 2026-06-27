@@ -1,35 +1,33 @@
 // RegisterPage.ts
 import { type Page, type Locator } from '@playwright/test';
-import { type ButtonVariant, type FormFieldLabel } from './types';
+import { type ButtonVariant, type FormFieldLabel, type CheckboxLabel } from './types';
 
 export class RegisterPage {
   private readonly page: Page;
-  
-  // Clean, descriptive properties for static elements
-  public readonly termsCheckbox: Locator;
+  private readonly formSelector: string = 'form#registration-form';
 
   constructor(page: Page) {
     this.page = page;
-    
-    // Explicitly typed role locator
-    this.termsCheckbox = page.getByRole('checkbox', { name: 'I accept terms' });
   }
 
   /**
-   * Cleanly handles dynamic form inputs using strict union validation
+   * Dynamically gets any form input field securely using its label
    */
   getInputField(label: FormFieldLabel): Locator {
-    // Only the specified FormFieldLabel strings will compile here
-    return this.page.getByLabel(label, { exact: true });
+    return this.page.locator(this.formSelector).getByLabel(label, { exact: true });
   }
 
   /**
-   * Uses chaining to find a specific button variant safely within a form container
+   * Dynamically gets any checkbox on the page using its visible text name
+   */
+  getCheckbox(label: CheckboxLabel): Locator {
+    return this.page.locator(this.formSelector).getByRole('checkbox', { name: label, exact: true });
+  }
+
+  /**
+   * Dynamically gets a button based on its CSS class styling variant
    */
   getActionButton(variant: ButtonVariant): Locator {
-    const formContainer = this.page.locator('form#registration-form');
-    
-    // Clean locator chaining ensures strict DOM targeting
-    return formContainer.locator(`button.${variant}-action`);
+    return this.page.locator(this.formSelector).locator(`button.${variant}-action`);
   }
 }
